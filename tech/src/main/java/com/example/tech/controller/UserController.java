@@ -3,6 +3,7 @@ package com.example.tech.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 
 import com.example.tech.service.UserSevice;
 
@@ -18,8 +19,10 @@ public class UserController {
     }
 
     @RequestMapping("/")
-    public String getHomePage() {
+    public String getHomePage(Model model) {
         String test = this.userService.handleHello();
+        model.addAttribute("home", test);
+        model.addAttribute("tech", "from controller ");
         return "hello";
     }
 }
