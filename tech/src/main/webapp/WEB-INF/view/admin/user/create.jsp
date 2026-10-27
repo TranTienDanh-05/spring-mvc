@@ -24,40 +24,34 @@
                         <div class="col-md-6 col -12 mx-auto">
                             <h3>Create a user</h3>
                             <hr>
-                            <form method="post" action="/admin/user/create1">
+                            <form:form method="post" action="/admin/user/create1" modelAttribute="newUser">
 
                                 <div class="mb-3">
                                     <label class="form-label">Email address</label>
-                                    <input type="email" name="email" class="form-control">
+                                    <form:input type="email" name="email" class="form-control" path="email" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <form:input type="password" name="password" class="form-control" path="password" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Phone Number</label>
-                                    <input type="text" name="phoneNumber" class="form-control">
+                                    <form:input type="text" name="phoneNumber" class="form-control" path="phone" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" name="fullName" class="form-control">
+                                    <form:input type="text" name="fullName" class="form-control" path="fullname" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Address</label>
-                                    <input type="text" name="address" class="form-control">
+                                    <form:input type="text" name="address" class="form-control" path="address" />
                                 </div>
-
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" name="check" class="form-check-input" id="check">
-                                    <label class="form-check-label" for="check">Check me out</label>
-                                </div>
-
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>
