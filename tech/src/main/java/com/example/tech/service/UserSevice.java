@@ -23,6 +23,10 @@ public class UserSevice {
         return this.userRepository.findByEmail(email);
     }
 
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
     public User handleSaveUser(User user) {
         User techUser = this.userRepository.save(user);
         System.out.println(techUser);
