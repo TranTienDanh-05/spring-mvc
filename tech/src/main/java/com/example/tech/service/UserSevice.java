@@ -1,5 +1,7 @@
 package com.example.tech.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.tech.domain.User;
@@ -13,8 +15,12 @@ public class UserSevice {
         this.userRepository = userRepository;
     }
 
-    public String handleHello() {
-        return "UserService";
+    public List<User> getAllUsers() {
+        return this.userRepository.findAll();
+    }
+
+    public List<User> getAllUsersByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 
     public User handleSaveUser(User user) {
