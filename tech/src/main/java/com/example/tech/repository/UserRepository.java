@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // insert into value(user)
     List<User> findByEmail(String email);
+
+    List<User> findAll();
+
 }
