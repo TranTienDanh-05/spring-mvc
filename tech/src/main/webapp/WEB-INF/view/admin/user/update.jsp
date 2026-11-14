@@ -24,17 +24,18 @@
                         <div class="col-md-6 col -12 mx-auto">
                             <h3>Update a user</h3>
                             <hr>
-                            <form:form method="post" action="/admin/user/update" modelAttribute="newUser">
+                            <form:form method="post" action="${pageContext.request.contextPath}/admin/user/update"
+                                modelAttribute="newUser">
 
                                 <div class="mb-3">
                                     <label class="form-label">Id</label>
-                                    <form:input type="text" name="id" class="form-control" path="id" disabled="true" />
+                                    <form:input type="text" class="form-control" path="id" />
+                                    <form:hidden path="id" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Email address</label>
-                                    <form:input type="email" name="email" class="form-control" path="email"
-                                        disabled="true" />
+                                    <form:input type="email" name="email" class="form-control" path="email" />
                                 </div>
 
                                 <div class=" mb-3">

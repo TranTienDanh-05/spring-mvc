@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import com.example.tech.domain.User;
-import com.example.tech.repository.UserRepository;
 import com.example.tech.service.UserSevice;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
@@ -55,6 +55,20 @@ public class UserController {
         User currentUser = this.userService.getUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update";
+    }
+
+    @PostMapping("/admin/user/update")
+    public String postUpdateUser(@ModelAttribute("newUser") User userUpdate) {
+        User currentUser = this.userService.getUserById(userUpdate.getId());
+
+        if (currentUser != null) {
+            currentUser.setAddress(userUpdate.getAddress());
+            currentUser.setFullname(userUpdate.getFullname());
+            currentUser.setPhone(userUpdate.getPhone());
+            currentUser.setEmail(userUpdate.getEmail());
+            this.userService.handleSaveUser(currentUser);
+        }
+        return "redirect:/admin/user";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
