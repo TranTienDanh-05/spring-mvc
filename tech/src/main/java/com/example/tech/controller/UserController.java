@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import com.example.tech.domain.User;
+import com.example.tech.repository.UserRepository;
 import com.example.tech.service.UserSevice;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -58,14 +62,12 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String postUpdateUser(@ModelAttribute("newUser") User userUpdate) {
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User userUpdate) {
         User currentUser = this.userService.getUserById(userUpdate.getId());
-
         if (currentUser != null) {
             currentUser.setAddress(userUpdate.getAddress());
             currentUser.setFullname(userUpdate.getFullname());
             currentUser.setPhone(userUpdate.getPhone());
-            currentUser.setEmail(userUpdate.getEmail());
             this.userService.handleSaveUser(currentUser);
         }
         return "redirect:/admin/user";
@@ -77,4 +79,18 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        User user = new User();
+        user.setId(id);
+        model.addAttribute("newUser", user);
+        return "/admin/user/delete";
+    }
+
+    @PostMapping("/admin/user/delete/{id}")
+    public String postDeleteUser(Model model, @ModelAttribute("newUser") User tech) {
+        this.userService.deleteAUser(tech.getId());
+        return "redirect:/admin/user";
+    }
 }

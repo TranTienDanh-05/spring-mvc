@@ -32,4 +32,8 @@ public class UserSevice {
         System.out.println(techUser);
         return techUser;
     }
+
+    public void deleteAUser(long id) {
+        this.userRepository.deleteById(id);
+    }
 }
